@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Manager</title>
+    <script src="books.js" defer></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    
+    <div class="search-box">
+
+        <input type="text" name="bookTitle_Input" id="bookTitle_Input" placeholder="Enter book name">
+
+        <input type="text" name="authorInput" id="authorInput" placeholder="Enter author name">
+
+        <button id="add_book">Add book</button>
+
+        <button id="clear_btn">Clear all</button>
+
+    </div>
+
+    <p id="error_msg"></p>
+
+    <p id="book_count"></p>
+    
+
+    <div class="container-table">
+
+        <table>
+            
+            <thead>   
+                
+                <tr>
+                
+                    <th>Sr. No.</th>
+                
+                    <th>Title</th>
+                
+                    <th>Author</th>
+                
+                    <th>Edit book</th>
+                    
+                    <th>Delete book</th>
+                
+                </tr>
+            
+            </thead>
+        
+            <tbody id="recordTable"></tbody>
+        
+        </table>
+    
+    </div>
+
+
+</body>
+</html>
