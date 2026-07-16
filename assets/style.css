@@ -2,7 +2,7 @@ body {
 
     font-family: Arial, Helvetica, sans-serif;
 
-    background-color: darkkhaki;
+    background-color: #F8F9FA;
 
     color: black;
 
@@ -28,6 +28,8 @@ body {
 
 input {
 
+    box-sizing: border-box;
+
     padding: 10px;
 
     width: 300px;
@@ -37,6 +39,14 @@ input {
     border-radius: 10px;
 
     font-weight: bold;
+}
+
+input:focus{
+
+    outline:none;
+
+    box-shadow:0 0 8px rgba(13,110,253,.35);
+
 }
 
 button {
@@ -54,9 +64,20 @@ button {
     cursor: pointer;
 }
 
-.container-table {
+button:hover{
 
-    max-width: 85%;
+transform:translateY(-2px);
+
+}
+
+
+.table-wrapper {
+
+    max-width: 1000px;
+
+    overflow-x:auto;
+
+    width: 95%;
 
     margin: 100px auto;
 
@@ -95,6 +116,12 @@ th, td {
 td {
 
     word-break: break-all;
+
+}
+
+th {
+
+    letter-spacing: .5px;
 
 }
 
@@ -157,5 +184,159 @@ td button:hover {
     background:#dc3545;
 
     color:white;
+
+}
+
+#add_book{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+#clear_btn{
+
+    background:#dc3545;
+
+    color:white;
+
+}
+
+.empty-message{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#6c757d;
+
+    font-style:italic;
+
+}
+
+#searchInput{
+
+    display:block;
+
+    width:350px;
+
+    max-width:90%;
+
+    margin:20px auto;
+
+    padding:12px 15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    box-sizing:border-box;
+
+}
+
+.title{
+
+    text-align:center;
+
+    font-size:48px;
+
+    margin:40px 0 10px;
+
+    color:#2C3E50;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#555;
+
+    font-size:18px;
+
+    margin-bottom:35px;
+
+}
+
+#book_count{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#2C3E50;
+
+    margin:20px 0;
+
+}
+
+#error_msg{
+
+    text-align:center;
+
+    color:#DC3545;
+
+    font-weight:bold;
+
+    min-height:24px;
+
+    margin-top:10px;
+
+}
+
+@media(max-width:768px){
+
+     .title{
+
+        font-size:36px;
+
+    }
+
+    .subtitle{
+
+        font-size:16px;
+
+        padding:0 20px;
+
+    }
+
+    #searchInput{
+
+        width:90%;
+
+    }
+
+    .search-box{
+
+        flex-direction:column;
+
+    }
+
+    input{
+
+        width:90%;
+
+    }
+
+    button{
+
+        width:95%;
+
+    }
+
+    .container-table{
+
+        width:95%;
+
+        margin:40px auto;
+
+    }
 
 }

@@ -5,6 +5,7 @@ let clear_btn = document.getElementById("clear_btn");
 let error_msg = document.getElementById("error_msg");
 let book_count = document.getElementById("book_count");
 let recordTable = document.getElementById("recordTable");
+const searchInput = document.getElementById("searchInput");
 
 
 let books = JSON.parse(
@@ -14,10 +15,85 @@ let books = JSON.parse(
 displayBooks();
 bookCount();
 
+authorInput.addEventListener("keydown", () => {
+
+    if(event.key == "Enter") {
+
+        add_book.click();
+
+    }
+
+})
+
+
+
+searchInput.addEventListener("input", searchBooks);
+
+function searchBooks() {
+
+        recordTable.innerHTML = "";
+
+        let searchText = searchInput.value.toLowerCase();
+
+            if(searchText === ""){
+
+                displayBooks();
+
+                return;
+
+            }
+
+
+        let found = false;
+
+        for(let i = 0; i < books.length; i++) {
+
+            let title = books[i].title.toLowerCase();
+
+            let author = books[i].author.toLowerCase();
+
+            if(title.includes(searchText) || author.includes(searchText)) {
+                
+            found = true;
+
+            recordTable.innerHTML += 
+
+                        `<tr>
+
+                            <td>${i+1}</td>
+
+                            <td>${books[i].title}</td>
+
+                            <td>${books[i].author}</td>
+
+                            <td><button class="editButton" onclick="editBook(${i})">✏️ Edit</button></td>
+
+                            <td><button class="deleteButton" onclick="deleteBook(${i})">🗑️ Delete</button></td>
+
+                        </tr>`
+
+
+            }
+
+        }
+
+        if(!found){
+
+                recordTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty-message">
+                            🔍 No matching books found.
+                        </td>
+                    </tr>
+                `;
+        }
+
+    }
+
 
 function bookCount() {
 
-    book_count.innerHTML = "Total books: " + books.length;
+    book_count.innerHTML = "📚 Total books: " + books.length;
 
 }
 
@@ -43,9 +119,9 @@ add_book.addEventListener("click", () => {
 
          books.push({
 
-             title: bookTitle_Input.value,
+             title: bookTitle_Input.value.trim(),
 
-             author: authorInput.value
+             author: authorInput.value.trim()
 
          });    
 
@@ -71,6 +147,17 @@ function displayBooks(){
     authorInput.value = "";
     recordTable.innerHTML = "";
 
+    if(books.length === 0) {
+
+        recordTable.innerHTML = `
+                                <tr>
+                                    <td class="empty-message" colspan="5">
+                                        📚 No books added yet.
+                                    </td>
+                                </tr>`;
+
+    }
+
     for(let i = 0; i < books.length; i++){
 
         recordTable.innerHTML += 
@@ -83,9 +170,9 @@ function displayBooks(){
             
             <td>${books[i].author}</td>
         
-            <td><button id="editButton" onclick="editBook(${i})">Edit book</button></td>
+            <td><button class="editButton" onclick="editBook(${i})">✏️ Edit</button></td>
         
-            <td><button id="deleteButton" onclick="deleteBook(${i})">Delete book</button></td>
+            <td><button class="deleteButton" onclick="deleteBook(${i})">🗑️ Delete</button></td>
         
         </tr>`
 
@@ -123,13 +210,13 @@ clear_btn.addEventListener("click", () => {
 
 function editBook(index){
 
-    let choice = prompt("What you want to edit?\n.1 Title \n2. Author");
+    let choice = prompt(`Edit Book 1. Edit Title 2. Edit Author`);
 
     if(choice === "1"){
 
         let newTitle = prompt("Enter new title");
 
-            if(newTitle !== null && newTitle.tdim() !== ""){
+            if(newTitle !== null && newTitle.trim() !== ""){
 
                 books[index].title = newTitle;
                 saveBooks();
@@ -140,7 +227,7 @@ function editBook(index){
 
         let newAuthor = prompt("Enter new author name");
 
-            if (newAuthor !== null && newAuthor.tdim() !== ""){
+            if (newAuthor !== null && newAuthor.trim() !== ""){
 
                 books[index].author = newAuthor;
                 saveBooks();
