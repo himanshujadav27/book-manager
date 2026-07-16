@@ -328,10 +328,17 @@ td button:hover {
     button{
 
         width:95%;
+        
 
     }
 
-    .container-table{
+    td button {
+
+        font-size:12px
+
+    }
+
+    .table-wrapper{
 
         width:95%;
 
